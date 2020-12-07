@@ -3,8 +3,6 @@ import 'package:clima/utilities/constants.dart';
 import '../services/weather.dart';
 import 'city_screen.dart';
 
-import 'package:fluttertoast/fluttertoast.dart';
-
 class LocationScreen extends StatefulWidget {
   LocationScreen(this.locationData);
 
@@ -29,43 +27,16 @@ class _LocationScreenState extends State<LocationScreen> {
   }
 
   void _updateUI(dynamic weatherData) {
-    String message;
     if (weatherData == null) {
-      message =
-          '$kLocationScreenDot_updateUIMethod = weatherData == null $kSwiggly';
-      Fluttertoast.showToast(
-          msg: message,
-          toastLength: Toast.LENGTH_LONG,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
-          fontSize: 16.0);
-      print(message);
-
       temperature = 0;
       weatherIcon = 'Error';
       weatherMessage = 'Error';
-      // cityName = 'Error';
       return;
     }
     setState(() {
-      message =
-          '$kLocationScreenDot_updateUIMethod = weatherData != null $kSwiggly';
-      Fluttertoast.showToast(
-          msg: message,
-          toastLength: Toast.LENGTH_LONG,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
-          fontSize: 16.0);
-      print(message);
 
       var temp = weatherData['main']['temp'];
-      // print('temp: $temp################################');
       temperature = temp.toInt();
-      // print('temperature: $temperature################################');
       var condition = weatherData['weather'][0]['id'];
       weatherIcon = weatherModel.getWeatherIcon(condition);
       cityName = weatherData['name'];
@@ -105,17 +76,6 @@ class _LocationScreenState extends State<LocationScreen> {
                   ),
                   FlatButton(
                     onPressed: () async {
-                      String message =
-                          '$kLocationScreenDotBuildMethod = before await for typedName $kSwiggly';
-                      Fluttertoast.showToast(
-                          msg: message,
-                          toastLength: Toast.LENGTH_LONG,
-                          gravity: ToastGravity.BOTTOM,
-                          timeInSecForIosWeb: 1,
-                          backgroundColor: Colors.red,
-                          textColor: Colors.white,
-                          fontSize: 16.0);
-                      print(message);
                       var typedName = await Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -125,46 +85,10 @@ class _LocationScreenState extends State<LocationScreen> {
                         ),
                       );
                       if (typedName != null) {
-                        message =
-                            '$kLocationScreenDotBuildMethod = typedName != null, before awaiting weatherModel.getCityWeather() $kSwiggly';
-                        Fluttertoast.showToast(
-                            msg: message,
-                            toastLength: Toast.LENGTH_LONG,
-                            gravity: ToastGravity.BOTTOM,
-                            timeInSecForIosWeb: 1,
-                            backgroundColor: Colors.red,
-                            textColor: Colors.white,
-                            fontSize: 16.0);
-                        print(message);
-
                         var cityWeather =
                             await weatherModel.getCityWeather(typedName);
 
-                        message =
-                            '$kLocationScreenDotBuildMethod = awaited typedName for cityWeather now can\'t guarantee _updateUri() next $kSwiggly';
-                        Fluttertoast.showToast(
-                            msg: message,
-                            toastLength: Toast.LENGTH_LONG,
-                            gravity: ToastGravity.BOTTOM,
-                            timeInSecForIosWeb: 1,
-                            backgroundColor: Colors.red,
-                            textColor: Colors.white,
-                            fontSize: 16.0);
-                        print(message);
-
                         _updateUI(cityWeather);
-                      } else {
-                        message =
-                            '$kLocationScreenDotBuildMethod typedName == null $kSwiggly';
-                        Fluttertoast.showToast(
-                            msg: message,
-                            toastLength: Toast.LENGTH_LONG,
-                            gravity: ToastGravity.BOTTOM,
-                            timeInSecForIosWeb: 1,
-                            backgroundColor: Colors.red,
-                            textColor: Colors.white,
-                            fontSize: 16.0);
-                        print(message);
                       }
                     },
                     child: Icon(

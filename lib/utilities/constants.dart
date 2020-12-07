@@ -37,23 +37,3 @@ const kTextFieldInputDecoration = InputDecoration(
     borderSide: BorderSide.none,
   ),
 );
-
-
-
-
-// TOAST CONSTANTS START
-const kSwiggly = '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~';
-
-const kLocationDotcreatePositionObjectForLatsAndLongsMethod = 'location.dart -> createPositionObjectForLatsAndLongs()';
-
-const kNetworkingDotGetDataMethod = 'networking.dart -> getData()';
-
-const kWeatherDotGetWeatherLocationMethod = 'weather.dart -> getWeatherLocation()';
-const kWeatherDotGetCityWeatherMethod = 'weather.dart -> getCityWeather()';
-
-const kLoadingScreenDot_getLocationDataMethod = 'loading_screen.dart -> _getLocationData()';
-
-const kLocationScreenDot_updateUIMethod = 'location_screen.dart -> _updateUI()';
-const kLocationScreenDotBuildMethod = 'location_screen.dart -> _updateUI()';
-
-// TOAST CONSTANTS END

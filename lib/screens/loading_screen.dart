@@ -7,8 +7,6 @@ import '../services/weather.dart';
 
 import 'package:fluttertoast/fluttertoast.dart';
 
-import '../utilities/constants.dart';
-
 class LoadingScreen extends StatefulWidget {
   @override
   _LoadingScreenState createState() => _LoadingScreenState();
@@ -23,46 +21,9 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
   void _getLocationData() async {
 
-    String message =
-        '$kLoadingScreenDot_getLocationDataMethod = before await WeatherModel().getWeatherLocation() $kSwiggly';
-    Fluttertoast.showToast(
-        msg: message,
-        toastLength: Toast.LENGTH_LONG,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 1,
-        // backgroundColor: Colors.red,
-        // textColor: Colors.white,
-        fontSize: 16.0);
-    print(message);
-
     var weatherData = await WeatherModel().getWeatherLocation();
 
-    message =
-    '$kLoadingScreenDot_getLocationDataMethod = awaited WeatherModel().getWeatherLocation() $kSwiggly';
-    Fluttertoast.showToast(
-        msg: message,
-        toastLength: Toast.LENGTH_LONG,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 1,
-        // backgroundColor: Colors.red,
-        // textColor: Colors.white,
-        fontSize: 16.0);
-    print(message);
-
     if (weatherData != null) {
-
-      message =
-      '$kLoadingScreenDot_getLocationDataMethod = weatherData != null $kSwiggly';
-
-      Fluttertoast.showToast(
-          msg: message,
-          toastLength: Toast.LENGTH_LONG,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
-          fontSize: 16.0);
-      print(message);
 
       Navigator.push(
         context,
@@ -75,37 +36,20 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
     } else {
 
-      message =
-      '$kLoadingScreenDot_getLocationDataMethod = weatherData == null $kSwiggly';
-
       Fluttertoast.showToast(
-          msg: message,
+          msg: 'Weather data couldn\'t be fetched :(',
           toastLength: Toast.LENGTH_LONG,
           gravity: ToastGravity.BOTTOM,
           timeInSecForIosWeb: 1,
           backgroundColor: Colors.red,
           textColor: Colors.white,
           fontSize: 16.0);
-      print(message);
-
-      var errorData = null;
-      // {
-      //   'main': {
-      //     'temp': -300,
-      //   },
-      //   'weather': [
-      //     {
-      //       'id': -1,
-      //     },
-      //   ],
-      //   'name': 'Error loading city'
-      // };
 
       Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) {
-            return LocationScreen(errorData);
+            return LocationScreen(null);
           },
         ),
       );
